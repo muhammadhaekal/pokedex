@@ -1,10 +1,18 @@
 import React from "react";
+import { ThunkDispatch } from "redux-thunk";
+import { AppActions } from "./types/actions";
+import { bindActionCreators } from "redux";
+import { fetchPokemonList } from "./redux/actions/pokemonList";
+import { connect } from "react-redux";
 
 export interface AppProps {}
 export interface AppState {}
+type Props = AppProps & MapDispatchToProps;
 
-class App extends React.Component<AppProps, AppState> {
-  componentDidMount = () => {};
+class App extends React.Component<Props, AppState> {
+  componentDidMount = () => {
+    this.props.fetchPokemonList();
+  };
 
   render() {
     return (
@@ -18,4 +26,14 @@ class App extends React.Component<AppProps, AppState> {
   }
 }
 
-export default App;
+interface MapDispatchToProps {
+  fetchPokemonList: () => void;
+}
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<any, any, AppActions>
+): MapDispatchToProps => ({
+  fetchPokemonList: bindActionCreators(fetchPokemonList, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(App);
