@@ -4,7 +4,7 @@ import { AppActions } from "../types/actions";
 import { bindActionCreators } from "redux";
 import { fetchPokemonList } from "../redux/actions/pokemonList";
 import { connect } from "react-redux";
-import { Wrapper, CardWrapper } from "./styled";
+import { Wrapper, CardWrapper, AppHeader } from "./styled";
 import { PokemonList } from "../types/PokemonList";
 import { AppState } from "../redux/store";
 import PokemonCard from "../components/PokemonCard";
@@ -26,7 +26,7 @@ class App extends React.Component<Props, IAppState> {
     const { pokemonList } = this.props;
     return (
       <Wrapper>
-        <h2>Pokedex</h2>
+        <AppHeader>Pokedex HKL</AppHeader>
 
         <CardWrapper>
           {pokemonList &&

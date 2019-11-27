@@ -2,6 +2,7 @@ import * as React from "react";
 import { Wrapper, NameWrapper, PokemonImg } from "./styled";
 import { PokemonInfo } from "../../types/PokemonList";
 import { RequestStatus } from "../../types/RequestStatus";
+import { PokemonInfoResAPI } from "../../types/PokemonInfoResAPI";
 
 export interface PokemonCardProps {
   pokemonInfo: PokemonInfo;
@@ -31,20 +32,25 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
           throw new Error("HTTP Status " + res.status + ", " + res.statusText);
         }
       })
-      .then(res => {
-        console.log(res);
+      .then((res: PokemonInfoResAPI) => {
+        if (res && res.sprites && res.sprites.front_default) {
+          this.setState({
+            front_default: res.sprites.front_default
+          });
+        }
       })
       .catch(err => {
-        console.log(err);
+        console.warn(err);
       });
   };
 
   render() {
     const { pokemonInfo } = this.props;
+    const { front_default } = this.state;
 
     return (
       <Wrapper>
-        <PokemonImg src={pokemonInfo.url}></PokemonImg>
+        <PokemonImg src={front_default}></PokemonImg>
         <NameWrapper>{pokemonInfo.name}</NameWrapper>
       </Wrapper>
     );

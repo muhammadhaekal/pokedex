@@ -5,16 +5,22 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   border-radius: 3px;
   margin-top: 10px;
   position: relative;
-  height: 230px;
+  height: 180px;
 `;
 
 export const NameWrapper = styled.div`
   position: absolute;
   bottom: 8px;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 3px;
+  background-color: lightgrey;
+  color: grey;
 `;
 
 export const PokemonImg = styled.img``;

@@ -9,3 +9,9 @@ export const CardWrapper = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
 `;
+
+export const AppHeader = styled.div`
+  font-weight: 900;
+  font-size: 38px;
+  color: grey;
+`;
