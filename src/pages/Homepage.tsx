@@ -8,6 +8,7 @@ import { Wrapper, CardWrapper, AppHeader } from "./styled";
 import { PokemonList } from "../types/PokemonList";
 import { AppState } from "../redux/store";
 import PokemonCard from "../components/PokemonCard";
+import PageNumList from "../components/PageNumList";
 
 export interface IAppProps {}
 export interface IAppState {}
@@ -16,10 +17,6 @@ type Props = IAppProps & MapDispatchToProps & IMapStateToProps;
 class App extends React.Component<Props, IAppState> {
   componentDidMount = () => {
     this.props.fetchPokemonList();
-  };
-
-  componentDidUpdate = () => {
-    console.log(this.props.pokemonList);
   };
 
   render() {
@@ -31,9 +28,11 @@ class App extends React.Component<Props, IAppState> {
         <CardWrapper>
           {pokemonList &&
             pokemonList.results.map((pokemonInfo, index) => (
-              <PokemonCard pokemonInfo={pokemonInfo}></PokemonCard>
+              <PokemonCard pokemonInfo={pokemonInfo} key={index}></PokemonCard>
             ))}
         </CardWrapper>
+
+        <PageNumList></PageNumList>
       </Wrapper>
     );
   }
