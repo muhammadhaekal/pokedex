@@ -1,5 +1,6 @@
+import { PAGINATION_LIMIT } from "./../../constants/index";
 import { AppState } from "./../store";
-import { AppActions } from "./../../types/actions";
+import { AppActions, SetPageNumber } from "./../../types/actions";
 import { PokemonList } from "./../../types/PokemonList";
 import { SetPokemonListData } from "../../types/actions";
 import { Dispatch } from "redux";
@@ -11,13 +12,24 @@ export const setPokemonListData = (
   pokemonList
 });
 
-export const fetchPokemonList = () => (
+export const setPageNumber = (pageNumber: number): SetPageNumber => ({
+  type: "SET_PAGE_NUMBER",
+  pageNumber
+});
+
+export const fetchPokemonList = (pageNumber: number = 1) => (
   dispatch: Dispatch<AppActions>,
   getState: () => AppState
 ) => {
-  fetch(`${process.env.REACT_APP_API_URL}/pokemon`, {
-    method: "GET"
-  })
+  const offset = pageNumber * PAGINATION_LIMIT;
+  dispatch(setPageNumber(pageNumber));
+
+  fetch(
+    `${process.env.REACT_APP_API_URL}/pokemon?offset=${offset}&limit=${PAGINATION_LIMIT}`,
+    {
+      method: "GET"
+    }
+  )
     .then(res => {
       if (res.status === 200) {
         return res.json();

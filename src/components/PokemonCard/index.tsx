@@ -22,7 +22,7 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
     };
   }
 
-  componentDidMount = () => {
+  fetchPokemonImage = () => {
     const { pokemonInfo } = this.props;
     fetch(`${pokemonInfo.url}`)
       .then(res => {
@@ -38,10 +38,19 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
             front_default: res.sprites.front_default
           });
         }
+        console.log(res.sprites.front_default);
       })
       .catch(err => {
         console.warn(err);
       });
+  };
+
+  componentDidMount = () => {
+    this.fetchPokemonImage();
+  };
+
+  componentDidUpdate = () => {
+    this.fetchPokemonImage();
   };
 
   render() {

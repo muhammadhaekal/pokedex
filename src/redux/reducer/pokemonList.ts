@@ -1,20 +1,25 @@
 import { PokemonListActionTypes } from "./../../types/actions";
 import { PokemonList } from "./../../types/PokemonList";
 
-const defaultState: PokemonList = {
-  count: 0,
-  next: "",
-  previous: "",
-  results: []
+interface DefaultState {
+  apiResponse: PokemonList;
+  offset: number;
+  page: number;
+}
+
+const defaultState: DefaultState = {
+  apiResponse: { count: 0, next: "", previous: "", results: [] },
+  offset: 0,
+  page: 1
 };
 
 const pokemonListReducer = (
   state = defaultState,
   action: PokemonListActionTypes
-): PokemonList => {
+): DefaultState => {
   switch (action.type) {
     case "SET_POKEMON_LIST_DATA":
-      return { ...state, ...action.pokemonList };
+      return { ...state, apiResponse: action.pokemonList };
     default:
       return { ...state };
   }

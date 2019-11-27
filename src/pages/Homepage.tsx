@@ -5,16 +5,16 @@ import { bindActionCreators } from "redux";
 import { fetchPokemonList } from "../redux/actions/pokemonList";
 import { connect } from "react-redux";
 import { Wrapper, CardWrapper, AppHeader } from "./styled";
-import { PokemonList } from "../types/PokemonList";
+import { PokemonInfo } from "../types/PokemonList";
 import { AppState } from "../redux/store";
 import PokemonCard from "../components/PokemonCard";
 import PageNumList from "../components/PageNumList";
 
-export interface IAppProps {}
-export interface IAppState {}
-type Props = IAppProps & MapDispatchToProps & IMapStateToProps;
+export interface IHomePageProps {}
+export interface IHomePageState {}
+type Props = IHomePageProps & MapDispatchToProps & IMapStateToProps;
 
-class App extends React.Component<Props, IAppState> {
+class App extends React.Component<Props, IHomePageState> {
   componentDidMount = () => {
     this.props.fetchPokemonList();
   };
@@ -27,7 +27,7 @@ class App extends React.Component<Props, IAppState> {
 
         <CardWrapper>
           {pokemonList &&
-            pokemonList.results.map((pokemonInfo, index) => (
+            pokemonList.map((pokemonInfo, index) => (
               <PokemonCard pokemonInfo={pokemonInfo} key={index}></PokemonCard>
             ))}
         </CardWrapper>
@@ -39,11 +39,11 @@ class App extends React.Component<Props, IAppState> {
 }
 
 interface IMapStateToProps {
-  pokemonList: PokemonList;
+  pokemonList: PokemonInfo[];
 }
 
 const mapStateToProps = (store: AppState): IMapStateToProps => ({
-  pokemonList: store.pokemonList
+  pokemonList: store.pokemonList.apiResponse.results
 });
 
 interface MapDispatchToProps {
