@@ -20,6 +20,8 @@ const pokemonListReducer = (
   switch (action.type) {
     case "SET_POKEMON_LIST_DATA":
       return { ...state, apiResponse: action.pokemonList };
+    case "SET_PAGE_NUMBER":
+      return { ...state, page: action.pageNumber };
     default:
       return { ...state };
   }

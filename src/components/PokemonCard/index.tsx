@@ -1,8 +1,9 @@
 import * as React from "react";
-import { Wrapper, NameWrapper, PokemonImg } from "./styled";
+import { Wrapper, NameWrapper, PokemonImg, LoadingImg } from "./styled";
 import { PokemonInfo } from "../../types/PokemonList";
 import { RequestStatus } from "../../types/RequestStatus";
 import { PokemonInfoResAPI } from "../../types/PokemonInfoResAPI";
+import loadingCircleSrc from "../../images/loading-circle.gif";
 
 export interface PokemonCardProps {
   pokemonInfo: PokemonInfo;
@@ -24,6 +25,7 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
 
   fetchPokemonImage = () => {
     const { pokemonInfo } = this.props;
+    this.setState({ detailInfoReqStatus: "loading" });
     fetch(`${pokemonInfo.url}`)
       .then(res => {
         if (res.status === 200) {
@@ -38,10 +40,14 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
             front_default: res.sprites.front_default
           });
         }
-        console.log(res.sprites.front_default);
+        this.setState({ detailInfoReqStatus: "success" });
       })
       .catch(err => {
+        this.setState({ detailInfoReqStatus: "failed" });
         console.warn(err);
+      })
+      .finally(() => {
+        this.setState({ detailInfoReqStatus: null });
       });
   };
 
@@ -49,18 +55,32 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
     this.fetchPokemonImage();
   };
 
-  componentDidUpdate = () => {
-    this.fetchPokemonImage();
+  componentDidUpdate = (
+    prevProps: PokemonCardProps,
+    prevState: PokemonCardState
+  ) => {
+    const { pokemonInfo } = this.props;
+    const prevPokemonInfo = prevProps.pokemonInfo;
+
+    if (pokemonInfo.url !== prevPokemonInfo.url) {
+      this.fetchPokemonImage();
+    }
   };
 
   render() {
     const { pokemonInfo } = this.props;
-    const { front_default } = this.state;
+    const { front_default, detailInfoReqStatus } = this.state;
 
     return (
       <Wrapper>
-        <PokemonImg src={front_default}></PokemonImg>
-        <NameWrapper>{pokemonInfo.name}</NameWrapper>
+        {detailInfoReqStatus === "loading" ? (
+          <LoadingImg src={loadingCircleSrc}></LoadingImg>
+        ) : (
+          <>
+            <PokemonImg src={front_default}></PokemonImg>
+            <NameWrapper>{pokemonInfo.name}</NameWrapper>
+          </>
+        )}
       </Wrapper>
     );
   }

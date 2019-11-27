@@ -23,4 +23,10 @@ export const NameWrapper = styled.div`
   color: grey;
 `;
 
-export const PokemonImg = styled.img``;
+export const PokemonImg = styled.img`
+  max-width: 100%;
+`;
+
+export const LoadingImg = styled.img`
+  max-width: 50%;
+`;
