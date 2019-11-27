@@ -5,7 +5,7 @@ const defaultState: PokemonList = {
   count: 0,
   next: "",
   previous: "",
-  result: []
+  results: []
 };
 
 const pokemonListReducer = (
