@@ -2,7 +2,7 @@ import * as React from "react";
 import { Wrapper, NameWrapper, PokemonImg, LoadingImg } from "./styled";
 import { PokemonInfo } from "../../types/PokemonList";
 import { RequestStatus } from "../../types/RequestStatus";
-import { PokemonInfoResAPI } from "../../types/PokemonInfoResAPI";
+import { PokemonInfoResAPI, Type } from "../../types/PokemonInfoResAPI";
 import loadingCircleSrc from "../../images/loading-circle.gif";
 
 export interface PokemonCardProps {
@@ -12,6 +12,7 @@ export interface PokemonCardProps {
 export interface PokemonCardState {
   front_default: string;
   detailInfoReqStatus: RequestStatus;
+  types: Type[];
 }
 
 class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
@@ -19,7 +20,8 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
     super(props);
     this.state = {
       front_default: "",
-      detailInfoReqStatus: null
+      detailInfoReqStatus: null,
+      types: []
     };
   }
 
@@ -37,7 +39,8 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
       .then((res: PokemonInfoResAPI) => {
         if (res && res.sprites && res.sprites.front_default) {
           this.setState({
-            front_default: res.sprites.front_default
+            front_default: res.sprites.front_default,
+            types: res.types
           });
         }
         this.setState({ detailInfoReqStatus: "success" });
