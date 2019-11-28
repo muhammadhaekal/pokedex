@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { createGlobalStyle } from "styled-components";
+import DetailInfoPage from "./pages/DetailInfoPage/DetailInfoPage";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -16,6 +17,11 @@ const App: React.SFC<AppProps> = () => {
     <>
       <GlobalStyle></GlobalStyle>
       <Route exact path="/" component={Homepage}></Route>
+      <Route
+        exact
+        path="/pokemon/:pokemonName"
+        component={DetailInfoPage}
+      ></Route>
     </>
   );
 };

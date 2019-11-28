@@ -1,15 +1,15 @@
 import React from "react";
 import { ThunkDispatch } from "redux-thunk";
-import { AppActions } from "../types/actions";
+import { AppActions } from "../../types/actions";
 import { bindActionCreators } from "redux";
-import { fetchPokemonList } from "../redux/actions/pokemonList";
+import { fetchPokemonList } from "../../redux/actions/pokemonList";
 import { connect } from "react-redux";
 import { Wrapper, CardWrapper, AppHeader } from "./styled";
-import { PokemonInfo } from "../types/PokemonList";
-import { AppState } from "../redux/store";
-import PokemonCard from "../components/PokemonCard";
-import PageNumList from "../components/PageNumList";
-import FilterCard from "../components/FilterCard";
+import { PokemonInfo } from "../../types/PokemonList";
+import { AppState } from "../../redux/store";
+import PokemonCard from "../../components/PokemonCard";
+import PageNumList from "../../components/PageNumList";
+import FilterCard from "../../components/FilterCard";
 
 export interface IHomePageProps {}
 export interface IHomePageState {}
