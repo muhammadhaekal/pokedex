@@ -28,5 +28,5 @@ export const PokemonImg = styled.img`
 `;
 
 export const LoadingImg = styled.img`
-  max-width: 50%;
+  max-width: 30%;
 `;
