@@ -20,4 +20,9 @@ export type PokemonListActionTypes =
   | SetPageNumber
   | SetTypeFilter;
 
+export interface SetPokemonInfo {
+  type: "SET_POKEMON_DETAIL_INFO";
+  pokemonInfo: any;
+}
+
 export type AppActions = PokemonListActionTypes;
