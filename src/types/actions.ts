@@ -10,6 +10,14 @@ export interface SetPageNumber {
   pageNumber: number;
 }
 
-export type PokemonListActionTypes = SetPokemonListData | SetPageNumber;
+export interface SetTypeFilter {
+  type: "SET_TYPE_FILTER";
+  typeFilter: string | null;
+}
+
+export type PokemonListActionTypes =
+  | SetPokemonListData
+  | SetPageNumber
+  | SetTypeFilter;
 
 export type AppActions = PokemonListActionTypes;

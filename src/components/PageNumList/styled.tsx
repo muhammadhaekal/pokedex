@@ -18,4 +18,5 @@ export const PageNumber = styled.div`
   border-radius: 3px;
   font-size: 20px;
   color: grey;
+  cursor: pointer;
 `;

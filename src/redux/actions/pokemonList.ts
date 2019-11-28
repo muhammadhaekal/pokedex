@@ -1,6 +1,10 @@
 import { PAGINATION_LIMIT } from "./../../constants/index";
 import { AppState } from "./../store";
-import { AppActions, SetPageNumber } from "./../../types/actions";
+import {
+  AppActions,
+  SetPageNumber,
+  SetTypeFilter
+} from "./../../types/actions";
 import { PokemonList } from "./../../types/PokemonList";
 import { SetPokemonListData } from "../../types/actions";
 import { Dispatch } from "redux";
@@ -15,6 +19,11 @@ export const setPokemonListData = (
 export const setPageNumber = (pageNumber: number): SetPageNumber => ({
   type: "SET_PAGE_NUMBER",
   pageNumber
+});
+
+export const setTypeFilter = (typeFilter: string | null): SetTypeFilter => ({
+  type: "SET_TYPE_FILTER",
+  typeFilter
 });
 
 export const fetchPokemonList = (pageNumber: number = 1) => (
