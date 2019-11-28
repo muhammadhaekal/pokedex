@@ -1,4 +1,5 @@
 import { PokemonList } from "./PokemonList";
+import { PokemonInfo } from "./PokemonInfo";
 
 export interface SetPokemonListData {
   type: "SET_POKEMON_LIST_DATA";
@@ -22,7 +23,9 @@ export type PokemonListActionTypes =
 
 export interface SetPokemonInfo {
   type: "SET_POKEMON_DETAIL_INFO";
-  pokemonInfo: any;
+  pokemonInfo: PokemonInfo;
 }
 
-export type AppActions = PokemonListActionTypes;
+export type PokemonInfoActionTypes = SetPokemonInfo;
+
+export type AppActions = PokemonListActionTypes | PokemonInfoActionTypes;
