@@ -9,6 +9,7 @@ import { PokemonInfo } from "../types/PokemonList";
 import { AppState } from "../redux/store";
 import PokemonCard from "../components/PokemonCard";
 import PageNumList from "../components/PageNumList";
+import FilterCard from "../components/FilterCard";
 
 export interface IHomePageProps {}
 export interface IHomePageState {}
@@ -33,6 +34,8 @@ class App extends React.Component<Props, IHomePageState> {
         </CardWrapper>
 
         <PageNumList></PageNumList>
+
+        <FilterCard></FilterCard>
       </Wrapper>
     );
   }

@@ -32,6 +32,7 @@ export const fetchPokemonList = (pageNumber: number = 1) => (
 ) => {
   const offset = pageNumber * PAGINATION_LIMIT;
   dispatch(setPageNumber(pageNumber));
+  dispatch(setTypeFilter(null));
 
   fetch(
     `${process.env.REACT_APP_API_URL}/pokemon?offset=${offset}&limit=${PAGINATION_LIMIT}`,

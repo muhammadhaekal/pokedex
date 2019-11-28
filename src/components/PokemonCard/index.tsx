@@ -1,9 +1,17 @@
 import * as React from "react";
-import { Wrapper, NameWrapper, PokemonImg, LoadingImg } from "./styled";
+import {
+  Wrapper,
+  NameWrapper,
+  PokemonImg,
+  LoadingImg,
+  Overlay
+} from "./styled";
 import { PokemonInfo } from "../../types/PokemonList";
 import { RequestStatus } from "../../types/RequestStatus";
 import { PokemonInfoResAPI, Type } from "../../types/PokemonInfoResAPI";
 import loadingCircleSrc from "../../images/loading-circle.gif";
+import { AppState } from "../../redux/store";
+import { connect } from "react-redux";
 
 export interface PokemonCardProps {
   pokemonInfo: PokemonInfo;
@@ -13,15 +21,19 @@ export interface PokemonCardState {
   front_default: string;
   detailInfoReqStatus: RequestStatus;
   types: Type[];
+  isOverlayActive: boolean;
 }
 
-class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
-  constructor(props: PokemonCardProps) {
+type Props = PokemonCardProps & IMapStateToProps;
+
+class PokemonCard extends React.Component<Props, PokemonCardState> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       front_default: "",
       detailInfoReqStatus: null,
-      types: []
+      types: [],
+      isOverlayActive: false
     };
   }
 
@@ -58,21 +70,42 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
     this.fetchPokemonImage();
   };
 
-  componentDidUpdate = (
-    prevProps: PokemonCardProps,
-    prevState: PokemonCardState
-  ) => {
-    const { pokemonInfo } = this.props;
+  componentDidUpdate = (prevProps: Props, prevState: PokemonCardState) => {
+    const { pokemonInfo, typeFilter } = this.props;
+    const { types } = this.state;
     const prevPokemonInfo = prevProps.pokemonInfo;
+    const prevTypeFilter = prevProps.typeFilter;
 
     if (pokemonInfo.url !== prevPokemonInfo.url) {
       this.fetchPokemonImage();
+    }
+
+    if (typeFilter !== prevTypeFilter) {
+      if (typeFilter === null) {
+        this.setState({
+          isOverlayActive: false
+        });
+        return;
+      }
+
+      const findTypes = types.find(type => {
+        return type.type.name === typeFilter;
+      });
+      let newIsOverlayActive = true;
+
+      if (findTypes) {
+        newIsOverlayActive = false;
+      }
+
+      this.setState({
+        isOverlayActive: newIsOverlayActive
+      });
     }
   };
 
   render() {
     const { pokemonInfo } = this.props;
-    const { front_default, detailInfoReqStatus } = this.state;
+    const { front_default, detailInfoReqStatus, isOverlayActive } = this.state;
 
     return (
       <Wrapper>
@@ -84,9 +117,18 @@ class PokemonCard extends React.Component<PokemonCardProps, PokemonCardState> {
             <NameWrapper>{pokemonInfo.name}</NameWrapper>
           </>
         )}
+        {isOverlayActive && <Overlay></Overlay>}
       </Wrapper>
     );
   }
 }
 
-export default PokemonCard;
+interface IMapStateToProps {
+  typeFilter: string | null;
+}
+
+const mapStateToProps = (store: AppState): IMapStateToProps => ({
+  typeFilter: store.pokemonList.typeFilter
+});
+
+export default connect(mapStateToProps, () => {})(PokemonCard);

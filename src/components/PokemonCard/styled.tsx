@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
   height: 180px;
 `;
 
+export const FilterHeaderText = styled.div`
+  color: grey;
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+`;
+
 export const NameWrapper = styled.div`
   position: absolute;
   bottom: 8px;
@@ -29,4 +36,12 @@ export const PokemonImg = styled.img`
 
 export const LoadingImg = styled.img`
   max-width: 30%;
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
