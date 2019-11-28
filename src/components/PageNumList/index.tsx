@@ -40,15 +40,17 @@ class PageNumList extends React.Component<Props, IPageNumListState> {
 
   render() {
     const { pageNumbers } = this.state;
-    const { fetchPokemonList } = this.props;
+    const { fetchPokemonList, page } = this.props;
     return (
       <Wrapper>
         {pageNumbers &&
-          pageNumbers.map(number => (
+          pageNumbers.map((number, index) => (
             <PageNumber
               onClick={() => {
                 fetchPokemonList(number);
               }}
+              key={index}
+              isCurrentPage={number === page}
             >
               {number}
             </PageNumber>

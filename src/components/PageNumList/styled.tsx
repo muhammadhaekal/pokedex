@@ -7,7 +7,11 @@ export const Wrapper = styled.div`
   margin-top: 10px;
 `;
 
-export const PageNumber = styled.div`
+interface IPageNumberProps {
+  isCurrentPage: boolean;
+}
+
+export const PageNumber = styled.div<IPageNumberProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,5 +22,21 @@ export const PageNumber = styled.div`
   border-radius: 3px;
   font-size: 20px;
   color: grey;
+  cursor: pointer;
+  ${(props: IPageNumberProps) =>
+    props.isCurrentPage && "background-color: lightgray;"}
+`;
+
+export const PageNavButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  border: 1px solid lightgrey;
+  margin: 0 3px;
+  border-radius: 3px;
+  font-size: 20px;
+  color: grey;
+  padding: 0 4px;
   cursor: pointer;
 `;
