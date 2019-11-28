@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { createGlobalStyle } from "styled-components";
-import DetailInfoPage from "./pages/DetailInfoPage/DetailInfoPage";
+import DetailInfoPage from "./pages/DetailInfoPage";
 
 const GlobalStyle = createGlobalStyle`
     body {

@@ -1,4 +1,4 @@
-import { Type } from "./PokemonInfoResAPI";
+import { Type, Sprites } from "./PokemonInfoResAPI";
 
 export interface PokemonInfo {
   name: string;
@@ -6,6 +6,7 @@ export interface PokemonInfo {
   height: number;
   weight: number;
   stats: Status[];
+  sprites: Sprites;
 }
 
 export interface Status {
