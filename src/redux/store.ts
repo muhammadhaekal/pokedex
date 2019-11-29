@@ -14,13 +14,7 @@ export type AppState = ReturnType<typeof rootReducer>;
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>),
-    // temporary for dev only
-    process.env.NODE_ENV === "development" &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  compose(applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>))
 );
 
 export default store;
