@@ -26,7 +26,7 @@ class App extends React.Component<Props, IHomePageState> {
       <Wrapper>
         <AppHeader>Pokedex HKL</AppHeader>
 
-        <CardWrapper>
+        <CardWrapper onClick={() => {}}>
           {pokemonList &&
             pokemonList.map((pokemonInfo, index) => (
               <PokemonCard pokemonInfo={pokemonInfo} key={index}></PokemonCard>

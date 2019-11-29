@@ -12,6 +12,7 @@ import { PokemonInfoResAPI, Type } from "../../types/PokemonInfoResAPI";
 import loadingCircleSrc from "../../images/loading-circle.gif";
 import { AppState } from "../../redux/store";
 import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router";
 
 export interface PokemonCardProps {
   pokemonInfo: PokemonInfo;
@@ -24,7 +25,7 @@ export interface PokemonCardState {
   isOverlayActive: boolean;
 }
 
-type Props = PokemonCardProps & IMapStateToProps;
+type Props = PokemonCardProps & IMapStateToProps & RouteComponentProps;
 
 class PokemonCard extends React.Component<Props, PokemonCardState> {
   constructor(props: Props) {
@@ -104,11 +105,18 @@ class PokemonCard extends React.Component<Props, PokemonCardState> {
   };
 
   render() {
-    const { pokemonInfo } = this.props;
+    const {
+      pokemonInfo,
+      history: { push }
+    } = this.props;
     const { front_default, detailInfoReqStatus, isOverlayActive } = this.state;
 
     return (
-      <Wrapper>
+      <Wrapper
+        onClick={() => {
+          push(`/pokemon/${pokemonInfo.name}`);
+        }}
+      >
         {detailInfoReqStatus === "loading" ? (
           <LoadingImg src={loadingCircleSrc}></LoadingImg>
         ) : (
@@ -131,4 +139,4 @@ const mapStateToProps = (store: AppState): IMapStateToProps => ({
   typeFilter: store.pokemonList.typeFilter
 });
 
-export default connect(mapStateToProps, () => {})(PokemonCard);
+export default connect(mapStateToProps, () => {})(withRouter(PokemonCard));

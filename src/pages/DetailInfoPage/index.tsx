@@ -16,16 +16,29 @@ import { bindActionCreators } from "redux";
 import { PokemonInfo } from "../../types/PokemonInfo";
 import { AppState } from "../../redux/store";
 import StatsInfo from "../../components/StatsInfo";
+import { RouteComponentProps } from "react-router";
+
+interface Params {
+  pokemonName: string;
+}
 
 export interface DetailInfoPageProps {}
 export interface DetailInfoPageState {}
-type Props = DetailInfoPageProps & IMapDispatchToProps & IMapStateToProps;
+type Props = DetailInfoPageProps &
+  IMapDispatchToProps &
+  IMapStateToProps &
+  RouteComponentProps<Params>;
 
 class DetailInfoPage extends React.Component<Props, DetailInfoPageState> {
   componentDidMount = () => {
-    const { fetchPokemonInfo } = this.props;
+    const {
+      fetchPokemonInfo,
+      match: {
+        params: { pokemonName }
+      }
+    } = this.props;
 
-    fetchPokemonInfo("bulbasaur");
+    fetchPokemonInfo(pokemonName);
   };
 
   render() {
