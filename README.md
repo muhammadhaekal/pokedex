@@ -8,14 +8,18 @@
 - Styled-components
 - React-router
 
+## Live Demo
+
+Please click this link [Live Demo!](https://pokedex-hkl.netlify.com/)
+
 ## How to run this project
 
-### Setup Requirement
+### 1. Install All Setup Requirement
 
 - NodeJs
 - NPM
 
-### Setup
+### 2. Run This Command on Project Folder
 
 ```
 # Development
