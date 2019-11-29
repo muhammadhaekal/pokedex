@@ -21,7 +21,7 @@ const StatsInfo: React.SFC<IStatsInfoProps> = ({ stats }) => {
         <StatInfoWrapper key={index}>
           <StatName>{stat.stat.name}</StatName>
           <StatBar>
-            <StatPrecentageBar statValue={50}></StatPrecentageBar>
+            <StatPrecentageBar statValue={stat.base_stat}></StatPrecentageBar>
           </StatBar>
         </StatInfoWrapper>
       ))}
