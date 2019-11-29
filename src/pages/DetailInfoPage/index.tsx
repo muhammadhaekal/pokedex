@@ -15,6 +15,7 @@ import { AppActions } from "../../types/actions";
 import { bindActionCreators } from "redux";
 import { PokemonInfo } from "../../types/PokemonInfo";
 import { AppState } from "../../redux/store";
+import StatsInfo from "../../components/StatsInfo";
 
 export interface DetailInfoPageProps {}
 export interface DetailInfoPageState {}
@@ -29,7 +30,7 @@ class DetailInfoPage extends React.Component<Props, DetailInfoPageState> {
 
   render() {
     const {
-      pokemonInfo: { name, types, sprites }
+      pokemonInfo: { name, types, sprites, stats }
     } = this.props;
 
     return (
@@ -42,8 +43,9 @@ class DetailInfoPage extends React.Component<Props, DetailInfoPageState> {
               <PokemonType key={index}>{type.type.name}</PokemonType>
             ))}
           </TypesWrapper>
+          <HorizontalLine></HorizontalLine>
+          <StatsInfo stats={stats}></StatsInfo>
         </TopInfoWrapper>
-        <HorizontalLine></HorizontalLine>
       </Wrapper>
     );
   }
