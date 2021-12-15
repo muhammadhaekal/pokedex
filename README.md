@@ -3,8 +3,8 @@
 ## Tech Stack
 
 - ReactJs
-- Redux
-- TypeScript
+- Redux 
+- TypeScript  
 - Styled-components
 - React-router
 
