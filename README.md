@@ -4,7 +4,7 @@
 
 - ReactJs
 - Redux 
-- TypeScript
+- TypeScript  
 - Styled-components
 - React-router
 
