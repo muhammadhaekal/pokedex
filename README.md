@@ -2,7 +2,7 @@
 
 ## Tech Stack
 
-- ReactJs
+- ReactJs ss
 - Redux ss
 - TypeScript  
 - Styled-components   
