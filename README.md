@@ -5,7 +5,7 @@
 - ReactJs
 - Redux 
 - TypeScript  
-- Styled-components 
+- Styled-components   
 - React-router
 
 ## Live Demo
