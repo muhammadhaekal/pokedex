@@ -2,10 +2,10 @@
 
 ## Tech Stack
 
-- ReactJs
-- Redux
-- TypeScript
-- Styled-components
+- ReactJs ss
+- Redux ss
+- TypeScript  
+- Styled-components   
 - React-router
 
 ## Live Demo
