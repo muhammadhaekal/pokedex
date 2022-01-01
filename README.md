@@ -1,6 +1,6 @@
 ## Pokedex App
 
-## Tech Stack
+## Tech Stackss
 
 - ReactJs ss
 - Redux ss
