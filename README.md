@@ -1,6 +1,6 @@
 ## Pokedex App
 
-- ReactJs ss
+- ReactJs ssz
 - Redux ss
 - TypeScript  
 - Styled-components   
